@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-const API_URL = "http://localhost:5000";
+const API_URL = "https://task-management-app-iy8z.vercel.app";
 
 function App() {
   const [page, setPage] = useState("register");
@@ -340,7 +340,9 @@ function App() {
                 <strong>Status:</strong> {task.status}
               </p>
 
-              <button onClick={() => editTask(task)}>Edit</button>
+              <button onClick={() => editTask(task)}>
+                Edit
+              </button>
 
               <button
                 onClick={() => changeStatus(task)}
