@@ -8,8 +8,22 @@ const taskRoutes = require("./routes/taskRoutes");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://task-management-app-chi-gold.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Task Management API is running!");
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
@@ -23,11 +37,6 @@ mongoose
     console.log("MongoDB connection failed:", error.message);
   });
 
-app.get("/", (req, res) => {
-  res.send("Task Management API is running!");
-});
-
-// Local server
 if (process.env.NODE_ENV !== "production") {
   app.listen(5000, () => {
     console.log("Server running on port 5000");
