@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-const API_URL = "https://task-management-app-iy8z.vercel.app";
+const API_URL =
+  "https://task-management-app-iy8z-ay43mqrha.vercel.app";
 
 function App() {
   const [page, setPage] = useState("register");
@@ -24,17 +25,20 @@ function App() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_URL}/api/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
+      const response = await fetch(
+        `${API_URL}/api/auth/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -56,16 +60,19 @@ function App() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_URL}/api/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+      const response = await fetch(
+        `${API_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -93,11 +100,14 @@ function App() {
         return;
       }
 
-      const response = await fetch(`${API_URL}/api/tasks`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      const response = await fetch(
+        `${API_URL}/api/tasks`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
 
       const data = await response.json();
 
@@ -182,12 +192,15 @@ function App() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(`${API_URL}/api/tasks/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      const response = await fetch(
+        `${API_URL}/api/tasks/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
 
       const data = await response.json();
 
@@ -213,18 +226,21 @@ function App() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(`${API_URL}/api/tasks/${task._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-        body: JSON.stringify({
-          title: task.title,
-          description: task.description,
-          status: nextStatus[task.status],
-        }),
-      });
+      const response = await fetch(
+        `${API_URL}/api/tasks/${task._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({
+            title: task.title,
+            description: task.description,
+            status: nextStatus[task.status],
+          }),
+        }
+      );
 
       if (response.ok) {
         fetchTasks();
