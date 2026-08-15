@@ -1,5 +1,8 @@
- import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
+
+const API_URL = "https://task-management-app-iy8z.vercel.app";
+
 function App() {
   const [page, setPage] = useState("register");
 
@@ -22,7 +25,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/register",
+        `${API_URL}/api/auth/register`,
         {
           method: "POST",
           headers: {
@@ -57,7 +60,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/login",
+        `${API_URL}/api/auth/login`,
         {
           method: "POST",
           headers: {
@@ -97,7 +100,7 @@ function App() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/tasks",
+        `${API_URL}/api/tasks`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -141,10 +144,10 @@ function App() {
     };
 
     try {
-      let url = "http://localhost:5000/api/tasks";
+      let url = `${API_URL}/api/tasks`;
 
       if (editingId) {
-        url = "http://localhost:5000/api/tasks/" + editingId;
+        url = `${API_URL}/api/tasks/${editingId}`;
       }
 
       const response = await fetch(url, {
@@ -190,7 +193,7 @@ function App() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/api/tasks/" + id,
+        `${API_URL}/api/tasks/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -224,7 +227,7 @@ function App() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/api/tasks/" + task._id,
+        `${API_URL}/api/tasks/${task._id}`,
         {
           method: "PUT",
           headers: {
