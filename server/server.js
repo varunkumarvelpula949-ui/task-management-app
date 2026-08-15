@@ -27,4 +27,6 @@ app.get("/", (req, res) => {
   res.send("Task Management API is running!");
 });
 
-module.exports = app;
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
+});
